@@ -18,6 +18,6 @@ Make changes to comments, file names, etc. if you're gonna use these.
 
 - Lex
 
-`lex [filename].c`\
+`lex [filename].l`\
 `cc lex.yy.c -o [filename] -lfl`\
 `./[filename]`
