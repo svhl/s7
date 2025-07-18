@@ -19,5 +19,12 @@ Make changes to comments, file names, etc. if you're gonna use these.
 - Lex
 
 `lex [filename].l`\
-`cc lex.yy.c -o [filename] -lfl`\
-`./[filename]`
+`cc lex.yy.c -lfl` or `cc lex.yy.c -o [name] -lfl`\
+`./a.out` or `./[name]`
+
+- YACC
+
+`yacc -d [filename].y`\
+`flex [filename].l`\
+`cc y.tab.c lex.yy.c -lfl` or `cc y.tab.c lex.yy.c -o [name] -lfl`\
+`./a.out` or `./name`
