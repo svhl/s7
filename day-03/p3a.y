@@ -3,13 +3,13 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include "y.tab.h"
 
 int yylex(void);
 void yyerror(const char *s);
 %}
 
 %token NUM
+%token VAR
 %left '+' '-'
 %left '*' '/'
 
