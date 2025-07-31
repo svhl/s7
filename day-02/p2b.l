@@ -1,4 +1,4 @@
-// check valid email address
+/* check valid email address */
 
 %{
 int flag = 0;

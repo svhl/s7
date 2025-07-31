@@ -1,4 +1,4 @@
-// recognize a valid arithmetic expression
+/* recognize a valid arithmetic expression */
 
 %{
 #include "y.tab.h"

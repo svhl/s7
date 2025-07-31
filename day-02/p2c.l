@@ -1,4 +1,4 @@
-// find no. of vowels and consonants in input
+/* find no. of vowels and consonants in input */
 
 %{
 int nvowel = 0, ncons = 0;
