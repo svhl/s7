@@ -1,7 +1,7 @@
 /* display no. of lines, words and characters in input */
 
 %{
-	int nchar, nword, nline;
+int nchar, nword, nline;
 %}
 
 %%
