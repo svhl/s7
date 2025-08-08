@@ -11,6 +11,7 @@ Make changes to comments, file names, etc. if you're gonna use these.
 | [3](https://github.com/svhl/s7/tree/main/day-03)          | 18 Jul '25| YACC programs                         |
 | [4](https://github.com/svhl/s7/tree/main/day-04)          | 18 Jul '25| Lex & YACC calculator                 |
 | [5](https://github.com/svhl/s7/tree/main/day-05)          | 01 Aug '25| NFA to DFA                            |
+| [6](https://github.com/svhl/s7/tree/main/day-06)          | 08 Aug '25| First of a grammar                    |
 
 ## How to use
 
