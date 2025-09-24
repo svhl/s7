@@ -1,85 +1,72 @@
 // shift reduce parser
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-char productions[10][20], input[20], stack[20];
-int input_ptr, stack_top, no_of_productions, shift, reduce;
+char stack[100], input[100];
+char productions[20][20];
+int n, top = -1, ip = 0;
+
+void printStep(const char *action) {
+    printf("%-20s %-20s %-20s\n", stack, input + ip, action);
+}
+
+int reduce()
+{
+    for (int i = 0; i < n; i++)
+    {
+        char lhs = productions[i][0];
+        char *rhs = productions[i] + 2;
+        int len = strlen(rhs);
+
+        if (top + 1 >= len && strncmp(stack + top - len + 1, rhs, len) == 0)
+        {
+            top = top - len + 1;
+            stack[top] = lhs;
+            stack[top + 1] = '\0';
+            char msg[40];
+            sprintf(msg, "Reduce by %s", productions[i]);
+            printStep(msg);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void main()
 {
-    input_ptr = 0;
-    stack_top = -1;
-
     printf("Enter no. of productions: ");
-    scanf("%d", &no_of_productions);
+    scanf("%d", &n);
     printf("Enter the productions:\n");
-
-    for (int i = 0; i < no_of_productions; i++)
+    for (int i = 0; i < n; i++)
     {
         scanf("%s", productions[i]);
     }
 
     printf("Enter the input string: ");
     scanf("%s", input);
-    printf("%-20s%-20s%-20s\n", "Stack", "Input", "Action");
 
-    do
+    printf("%-20s %-20s %-20s\n", "Stack", "Input", "Action");
+
+    while (1)
     {
-        shift = 0;
-        reduce = 1;
-
-        if (stack[0] == productions[0][0] && strlen(stack) == 1 && input[strlen(input) - 1] == ' ')
+        if (stack[0] == productions[0][0] && stack[1] == '\0' && input[ip] == '\0')
         {
             printf("String accepted.\n");
-            return;
+            break;
         }
 
-        int i;
-
-        for (i = 0; i < no_of_productions; i++)
+        if (!reduce())
         {
-            reduce = 1;
-            for (int j = stack_top, k = strlen(productions[i]) - 1; j >= 0, k >= 2; j--, k--)
+            if (input[ip] == '\0')
             {
-                if (stack[j] != productions[i][k])
-                {
-                    reduce = 0;
-                }
-            }
-
-            if (reduce == 1)
-            {
+                printf("String rejected.\n");
                 break;
             }
+            
+            stack[++top] = input[ip++];
+            stack[top + 1] = '\0';
+            printStep("Shift");
         }
-
-        if (reduce == 1)
-        {
-            int j, k;
-
-            for (j = stack_top, k = strlen(productions[i]) - 1; j >= 0, k >= 2; j--, k--);
-
-            stack[j + 1] = productions[i][0];
-            stack[j + 2] = '\0';
-            stack_top -= strlen(productions[i]) - 2 - 1;
-            printf("%-20s%-20sReduce to %s\n", stack, input, productions[i]);
-        }
-        else
-        {
-            if (input[input_ptr] != '\0')
-            {
-                shift = 1;
-                stack_top++;
-                stack[stack_top] = input[input_ptr];
-                stack[stack_top + 1] = '\0';
-                input[input_ptr] = ' ';
-                input_ptr++;
-                printf("%-20s%-20s%-20s\n", stack, input, "Shift");
-            }
-        }
-    } while (shift == 1 || reduce == 1);
-
-    printf("String rejected.\n");
+    }
 }
