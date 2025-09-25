@@ -37,3 +37,8 @@ Make changes to comments, file names, etc. if you're gonna use these.
 `flex [filename].l`\
 `cc y.tab.c lex.yy.c -lfl` or `cc y.tab.c lex.yy.c -o [name] -lfl`\
 `./a.out` or `./[name]`
+
+## Additional credits
+
+Michelle Mariam Vivek | [GitHub](https://github.com/michellemariamvivek)\
+Geevar Saji Kuriakose | [GitHub](https://github.com/Geevar12)
