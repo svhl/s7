@@ -2,116 +2,56 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-typedef struct {
-    char result;
-    char op1;
-    char op2;
-    char operator;
-} Code;
-
-int precedence(char op)
+int prec(char op)
 {
     if (op == '*' || op == '/')
     {
         return 2;
     }
-
-    else if (op == '+' || op == '-')
+    
+    if (op == '+' || op == '-')
     {
         return 1;
     }
-
+    
     return 0;
 }
 
-int isOperator(char c) {
-    return (c == '+' || c == '-' || c == '*' || c == '/');
-}
-
-void main()
+int main()
 {
-    char expr[100], rhs[100];
-    Code codes[100];
-    int codeIndex = 0;
-    char tempVar = 'Z';
-
-    printf("Enter the expression: ");
+    char expr[100], temp = 'Z', code[10][20]; 
+    int n = 0;
     scanf("%s", expr);
-
-    char lhs = expr[0];
+    char lhs = expr[0], rhs[100]; 
     strcpy(rhs, expr + 2);
 
     while (1)
     {
-        int i, found = 0;
-        int maxPrecedence = -1;
-        int opIndex = -1;
-
-        for (i = 0; rhs[i] != '\0'; i++)
+        int i, max = -1, pos = -1;
+        
+        for (i = 0; rhs[i]; i++)
         {
-            if (isOperator(rhs[i]))
+            if (strchr("+-*/", rhs[i]) && prec(rhs[i]) > max)
             {
-                int p = precedence(rhs[i]);
-                if (p > maxPrecedence)
-                {
-                    maxPrecedence = p;
-                    opIndex = i;
-                }
+                max = prec(rhs[i]), pos = i;
             }
         }
-
-        if (opIndex == -1)
+        
+        if (pos == -1)
         {
             break;
         }
-
-        char op = rhs[opIndex];
-        char left = rhs[opIndex - 1];
-        char right = rhs[opIndex + 1];
-        codes[codeIndex].result = tempVar;
-        codes[codeIndex].op1 = left;
-        codes[codeIndex].op2 = right;
-        codes[codeIndex].operator = op;
-        codeIndex++;
-        char newRHS[100];
-        int k = 0;
-
-        for (i = 0; i < opIndex - 1; i++)
-        {
-            newRHS[k++] = rhs[i];
-        }
-
-        newRHS[k++] = tempVar;
-
-        for (i = opIndex + 2; rhs[i] != '\0'; i++)
-        {
-            newRHS[k++] = rhs[i];
-        }
-
-        newRHS[k] = '\0';
-        strcpy(rhs, newRHS);
-        tempVar--;
+        
+        sprintf(code[n++], "%c=%c%c%c", temp, rhs[pos - 1], rhs[pos], rhs[pos + 1]);
+        rhs[pos - 1] = temp--; 
+        strcpy(rhs + pos, rhs + pos + 2);
     }
 
-    codes[codeIndex].result = lhs;
-    codes[codeIndex].op1 = rhs[0];
-    codes[codeIndex].op2 = '\0';
-    codes[codeIndex].operator = '=';
-
-    printf("\nIntermediate code:\n\n");
-
-    for (int i = 0; i <= codeIndex; i++)
+    sprintf(code[n++], "%c=%c", lhs, rhs[0]);
+    
+    for (int i = 0; i < n; i++)
     {
-        if (codes[i].operator == '=')
-        {
-            printf("%c=%c\n", codes[i].result, codes[i].op1);
-        }
-        
-        else
-        {
-            printf("%c=%c%c%c\n", codes[i].result, codes[i].op1, codes[i].operator, codes[i].op2);
-        }
+        puts(code[i]);
     }
 }
