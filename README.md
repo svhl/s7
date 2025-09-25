@@ -12,6 +12,11 @@ Make changes to comments, file names, etc. if you're gonna use these.
 | [4](https://github.com/svhl/s7/tree/main/day-04)          | 18 Jul '25| Lex & YACC calculator                 |
 | [5](https://github.com/svhl/s7/tree/main/day-05)          | 01 Aug '25| NFA to DFA                            |
 | [6](https://github.com/svhl/s7/tree/main/day-06)          | 08 Aug '25| First of a grammar                    |
+| [7](https://github.com/svhl/s7/tree/main/day-07)          | 22 Aug '25| Recursive descent parser              |
+| [8](https://github.com/svhl/s7/tree/main/day-08)          | 22 Aug '25| Shift reduce parser                   |
+| [9](https://github.com/svhl/s7/tree/main/day-09)          | 12 Sep '25| Constant propagation                  |
+| [10](https://github.com/svhl/s7/tree/main/day-10)         | 19 Sep '25| Intermediate code generation          |
+| [11](https://github.com/svhl/s7/tree/main/day-11)         | 19 Sep '25| Compiler backend                      |
 
 ## How to use
 
