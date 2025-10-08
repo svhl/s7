@@ -36,7 +36,7 @@ void main()
     while (1)
     {
         fgets(line, sizeof(line), stdin);
-        if (strncmp(line, "exit", 4) == 0) break;
+        if (strcmp(line, "exit") == 0) break;
         sscanf(line, "%s = %s %s %s", result, op1, op, op2);
         generate(result, op1, op, op2);
     }
