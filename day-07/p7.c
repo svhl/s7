@@ -1,5 +1,12 @@
 // recursive descent parser
 
+/*
+S->aABe
+A->bA'
+A'->bcA'|#
+B->d
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -11,7 +11,7 @@ int flag = 0;
 
 %%
 
-int main(void)
+void main()
 {
     yylex();
 
@@ -24,6 +24,5 @@ int main(void)
     {
         printf("Invalid email address\n");
     }
-    return 0;
 }
 

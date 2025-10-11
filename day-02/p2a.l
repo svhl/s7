@@ -12,9 +12,8 @@ int nchar, nword, nline;
 
 %%
 
-int main(void)
+void main()
 {
 	yylex();
 	printf("No. of characters: %d\nNo. of words: %d\nNo. of lines: %d\n", nchar, nword, nline);
-	return 0;
 }

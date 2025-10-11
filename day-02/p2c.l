@@ -12,7 +12,7 @@ int nvowel = 0, ncons = 0;
 
 %%
 
-int main(void)
+void main()
 {
     yylex();
     printf("No. of vowels: %d\nNo. of consonants: %d\n", nvowel, ncons);

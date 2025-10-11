@@ -7,7 +7,8 @@ char stack[100], input[100];
 char productions[20][20];
 int n, top = -1, ip = 0;
 
-void printStep(const char *action) {
+void printStep(const char *action)
+{
     printf("%-20s %-20s %-20s\n", stack, input + ip, action);
 }
 
@@ -30,6 +31,7 @@ int reduce()
             return 1;
         }
     }
+    
     return 0;
 }
 
@@ -38,6 +40,7 @@ void main()
     printf("Enter no. of productions: ");
     scanf("%d", &n);
     printf("Enter the productions:\n");
+
     for (int i = 0; i < n; i++)
     {
         scanf("%s", productions[i]);
@@ -45,7 +48,6 @@ void main()
 
     printf("Enter the input string: ");
     scanf("%s", input);
-
     printf("%-20s %-20s %-20s\n", "Stack", "Input", "Action");
 
     while (1)
