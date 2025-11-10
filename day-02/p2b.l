@@ -6,7 +6,7 @@ int flag = 0;
 
 %%
 
-[0-9A-Za-z.-_]+@[A-Za-z.-]+\.[A-Za-z]+	{ flag = 1; }
+[0-9A-Za-z.-_]+@[A-Za-z.-]+\.[A-Za-z]+$	{ flag = 1; }
 .|\n					{ }
 
 %%
