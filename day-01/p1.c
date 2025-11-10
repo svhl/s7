@@ -4,6 +4,24 @@
 #include <ctype.h>
 #include <string.h>
 
+char printed[100][20];
+int printedCount = 0;
+
+int alreadyPrinted(char *word)
+{
+	for (int i = 0; i < printedCount; i++)
+	{
+		if (strcmp(printed[i], word) == 0)
+			return 1;
+	}
+	return 0;
+}
+
+void addPrinted(char *word)
+{
+	strcpy(printed[printedCount++], word);
+}
+
 int isKeyword(char word[])
 {
 	char keywords[5][10] = {"int", "float", "if", "else", "while"};
@@ -67,23 +85,43 @@ void main()
 
 			if (isKeyword(word))
 			{
-				printf("Keyword: %s\n", word);
+				if (!alreadyPrinted(word))
+				{
+					printf("Keyword: %s\n", word);
+					addPrinted(word);
+				}
 			}
 
 			else
 			{
-				printf("Identifier: %s\n", word);
+				if (!alreadyPrinted(word))
+				{
+					printf("Identifier: %s\n", word);
+					addPrinted(word);
+				}
 			}
 		}
 
 		else if (isdigit(c))
 		{
-			printf("Number: %c\n", c);
+			char num[5] = {c, '\0'};
+
+			if (!alreadyPrinted(num))
+			{
+				printf("Number: %c\n", c);
+				addPrinted(num);
+			}
 		}
 
 		else if (strchr("=+-*/;(){}", c))
 		{
-			printf("Symbol: %c\n", c);
+			char sym[2] = {c, '\0'};
+
+			if (!alreadyPrinted(sym))
+			{
+				printf("Symbol: %c\n", c);
+				addPrinted(sym);
+			}
 		}
 	}
 
