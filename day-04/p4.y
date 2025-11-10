@@ -20,7 +20,7 @@ extern int yy_scan_string(const char *str);
 %%
 
 input:
-	expr '\n'	{ result = $1; }
+	expr		{ result = $1; }
 	;
 
 expr:

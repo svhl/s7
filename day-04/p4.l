@@ -7,8 +7,7 @@
 %%
 
 [0-9]+		{ yylval = atoi(yytext); return NUM; }
-[ \t\r]		{ }
-"\n"		{ return '\n'; }
+[ \t\r\n]		{ }
 "("		{ return '('; }
 ")"		{ return ')'; }
 "+"		{ return '+'; }
