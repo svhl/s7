@@ -7,7 +7,7 @@
 char printed[100][20];
 int printedCount = 0;
 
-int alreadyPrinted(char *word)
+int alreadyPrinted(char word[])
 {
 	for (int i = 0; i < printedCount; i++)
 	{
@@ -17,7 +17,7 @@ int alreadyPrinted(char *word)
 	return 0;
 }
 
-void addPrinted(char *word)
+void addPrinted(char word[])
 {
 	strcpy(printed[printedCount++], word);
 }
